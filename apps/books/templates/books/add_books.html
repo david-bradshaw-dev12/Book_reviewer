@@ -1,0 +1,59 @@
+<!doctype>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/books.css' %}" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+    	<div id="wrapper">
+    	<div id="side_bar">
+    		<form action="logout">
+    			<button id="submit">Log out</button>
+    		</form>
+    	</div>
+    	<div id="main_content">
+    	<h3>Add a book and a review!</h3>
+    	<form action="/books/add/submit" method="POST">
+    		{% csrf_token %}
+    		<ul>
+    		<li><label>Book Title:<input type="text" name="title" id="title"></label></li>
+    		<li>Choose an author from the list</li>
+    		<select name="author">
+    			{% for author in authors %}
+    			<option value="{{ author.id }}">{{ author.auth_name }}</option>
+    			{% endfor %}
+    		</select>
+    		<li>or add a new author<input type="text" name="add_author" id="add_author"></li>
+    		<li><label>Review:<textarea name="review" id="review">add a review here...</textarea></label></li>
+    		<li><label>Rating</label></li>
+    		<select name="rating_num">
+    			<option value="1">1</option>
+    			<option value="2">2</option>
+    			<option value="3">3</option>
+    			<option value="4">4</option>
+    			<option value="5">5</option>
+    		</select>
+    		<li>choose a rating type from list</li>
+    		<select name="rating_type">
+    			<option value="stars">Stars</option>
+    			<option value="potatoes">Potatoes</option>
+    			<option value="worms">Worms</option>
+    			<option value="eggs">Eggs</option>
+    			<option value="bananas">Bananas</option>
+    		</select>
+    		<li><input type="submit"></li>
+    		</ul>
+    	</form>
+    	</div>
+    	<div id="side_bar">
+    		<form action="/books/add">
+                {% csrf_token %}
+                <button id="submit">Add a book and review!</button>
+            </form>
+            <a href="/books">See all books</a>
+    	</div>
+    	</div>
+    </body>
+</html>

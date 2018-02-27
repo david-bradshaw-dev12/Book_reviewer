@@ -1,0 +1,37 @@
+*{
+	font-family: arial;
+	font-size: 20pt;
+}
+div{
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+	
+}
+#wrapper{
+	width: 1200px;
+	height: auto;
+}
+#side_bar{
+	display: inline-block;
+	width: 200px;
+	height: 400px;
+	border: 2px solid black;
+	vertical-align: top;
+}
+#side_bar button{
+	margin: 10px;
+}
+#main_content{
+	display: inline-block;
+	width: 750px;
+	height: auto;
+	border: 2px solid black;
+	vertical-align: top;
+}
+#main_books{
+	display: inline-block;
+	width: 500px;
+	height: auto;
+	border: 2px solid black;
+	margin: 10px;
+}

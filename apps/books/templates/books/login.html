@@ -1,0 +1,41 @@
+<!doctype>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+        <h2>Welcome to my book reviewer website!</h2>
+    	<div>
+    		<h3>Register here</h3>
+    		<form action="/register" method="POST">
+    			{% csrf_token %}
+    			<input type="text" name="first_name" placeholder="first name">
+    			<input type="text" name="last_name" placeholder="last name">
+                <input type="text" name="alias" placeholder="Alias">
+    			<input type="text" name="email" placeholder="email">
+    			<input type="password" name="password" placeholder="password">
+    			<input type="password" name="password2" placeholder="confirm password">
+    			<input type="submit">
+    		</form>
+    	</div>
+    	<div>
+    		<h3>Login here</h3>
+    		<form action="/login" method="POST">
+    			{% csrf_token %}
+    			<input type="text" name="log_email" placeholder="email">
+    			<input type="password" name="log_password" placeholder="password">
+    			<button id="submit">Log in</button>
+    		</form>
+    	</div>
+    	<div>
+    		{% if messages %}
+    		{% for message in messages %}
+    		<p>Error: {{message}}</p>
+    		{% endfor %}
+    		{% endif %}
+    	</div>
+    </body>
+</html>

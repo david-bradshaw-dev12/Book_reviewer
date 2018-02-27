@@ -1,0 +1,61 @@
+<!doctype>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/books.css' %}" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+    	<div id="wrapper">
+    	<div id="side_bar">
+    		<form action="logout">
+    			<button id="submit">Log out</button>
+    		</form>
+    	</div>
+    	<div id="main_content">
+    		<div id="main_books">
+    		<p>{{ book.title }}</p>
+    		<p>{{ book.author.auth_name }}</p>
+    		</div>
+                {% for review in reviews %}
+                <div>
+                <p>Rated: {{ review.rating }}
+                {{ review.rate_type }} by {{ review.users.alias }}</p>
+                <p>{{ review.review }}</p>
+                </div>
+                {% endfor %}
+            <div>
+                <h5>Leave a review</h5>
+                <form action="books/{{ book.id }}/review" method="POST">
+                    {% csrf_token %}
+                    <textarea name="review" id="review" placeholder="Leave a review here!"></textarea>
+                    <label>Rating</label>
+            <select name="rating_num">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            choose a rating type from list
+            <select name="rating_type">
+                <option value="stars">Stars</option>
+                <option value="potatoes">Potatoes</option>
+                <option value="worms">Worms</option>
+                <option value="eggs">Eggs</option>
+                <option value="bananas">Bananas</option>
+            </select>
+            <input type="submit">
+                </form>
+            </div>
+    	</div>
+    	<div id="side_bar">
+    		<form action="/books/add">
+                <button id="submit">Add a book and review!</button>
+            </form>
+            <a href="/books">See all books</a>
+    	</div>
+    	</div>
+    </body>
+</html>

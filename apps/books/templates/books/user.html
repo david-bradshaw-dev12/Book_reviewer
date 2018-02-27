@@ -1,0 +1,33 @@
+<!doctype>
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8">
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'css/books.css' %}" media="screen" title="no title" charset="utf-8">
+    </head>
+    <body>
+    	<div id="wrapper">
+	    	<div id="side_bar">
+	    		<form action="logout">
+    			<button id="submit">Log out</button>
+    		</form>
+	    	</div>
+	    	<div id="main_content">
+	    		<h4>Books that {{ user.first_name }} {{ user.last_name }} has uploaded</h4>
+	    		<h5>Alias: {{ user.alias }}</h5>
+	    		{% for book in books %}
+	    		<p>{{ book.title }}</p>
+	    		{% endfor %}
+
+
+	    	</div>
+	    	<div id="side_bar">
+	    		<form action="/books/add">
+	                <button id="submit">Add a book and review!</button>
+	            </form>
+	            <a href="/books">See all books</a>
+	    	</div>
+	    </div>
+    </body>
+</html>
